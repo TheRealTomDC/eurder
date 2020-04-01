@@ -1,4 +1,4 @@
-package com.toms.eurder;
+package com.toms.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
