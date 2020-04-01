@@ -17,11 +17,11 @@
             <artifactId>service</artifactId>
         </dependency>
 
-        <!-- below is optional i think...., just to clarify that api has true service a dependency on domain -->
+        <!-- below is optional i think...., just to clarify that api has true service a dependency on domain
         <dependency>
             <groupId>com.toms</groupId>
             <artifactId>domain</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 
