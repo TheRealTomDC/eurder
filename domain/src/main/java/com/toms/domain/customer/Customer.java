@@ -15,4 +15,24 @@ public class Customer {
         this.adress = adress;
         this.phoneNumber = phoneNumber;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }

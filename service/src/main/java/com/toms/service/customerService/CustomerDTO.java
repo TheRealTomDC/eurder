@@ -1,6 +1,7 @@
 package com.toms.service.customerService;
 
 import com.toms.domain.customer.Adress;
+import com.toms.domain.customer.Customer;
 
 public class CustomerDTO {
     String firstName;
@@ -10,11 +11,31 @@ public class CustomerDTO {
     String phoneNumber;
 
 
-    public CustomerDTO(String firstName, String lastName, String eMail, Adress adress, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.eMail = eMail;
-        this.adress = adress;
-        this.phoneNumber = phoneNumber;
+    public CustomerDTO(Customer customer) {
+        this.firstName = customer.getFirstName();
+        this.lastName = customer.getLastName();
+        this.eMail = customer.geteMail();
+        this.adress = customer.getAdress();
+        this.phoneNumber = customer.getPhoneNumber();
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public Adress getAdress() {
+        return adress;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

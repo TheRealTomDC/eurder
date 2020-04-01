@@ -1,7 +1,8 @@
-package com.toms.customer;
+package com.toms.api.customer;
 
 
-import com.toms.domain.customer.Customer;
+import com.toms.service.customerService.CustomerCreaterDTO;
+import com.toms.service.customerService.CustomerDTO;
 import com.toms.service.customerService.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void test(){
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerDTO createCustomerAccount(@RequestBody CustomerCreaterDTO customerCreaterDTO){
+        return customerService.createCustomerService(customerCreaterDTO);
     }
 }
