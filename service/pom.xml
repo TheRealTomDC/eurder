@@ -9,15 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>api</artifactId>
+    <artifactId>service</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.toms</groupId>
-            <artifactId>service</artifactId>
-        </dependency>
-
-        <!-- below is optional i think...., just to clarify that api has true service a dependency on domain -->
         <dependency>
             <groupId>com.toms</groupId>
             <artifactId>domain</artifactId>
