@@ -16,8 +16,16 @@ public class CustomerService {
     }
 
     public CustomerDTO createCustomerService(CustomerCreaterDTO customerCreaterDTO) {
+        checkIfValidInput(customerCreaterDTO);
         Customer customer = new Customer(customerCreaterDTO.getFirstName(),customerCreaterDTO.getLastName(),customerCreaterDTO.geteMail(),new Adress(customerCreaterDTO.getStreet(),customerCreaterDTO.getHouseNumber(),customerCreaterDTO.getPostalCode(),customerCreaterDTO.getCity()),customerCreaterDTO.getPhoneNumber());
         customerRepository.addNewCustomerAccount(customer);
         return new CustomerDTO(customer);
+    }
+
+    private CustomerCreaterDTO checkIfValidInput(CustomerCreaterDTO customerCreaterDTO) {
+        String emailToCheck = customerCreaterDTO.geteMail();
+        customerRepository.checkIfEmailIsUnique(emailToCheck);
+        return customerCreaterDTO;
+
     }
 }

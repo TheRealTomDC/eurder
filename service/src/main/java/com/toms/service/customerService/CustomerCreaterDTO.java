@@ -10,6 +10,17 @@ public class CustomerCreaterDTO {
     private String city;
     private String phoneNumber;
 
+    public CustomerCreaterDTO(String firstName, String lastName, String eMail, String street, int houseNumber, int postalCode, String city, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.street = street;
+        this.houseNumber = houseNumber;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getFirstName() {
         return firstName;
     }

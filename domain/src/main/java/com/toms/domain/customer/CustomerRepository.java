@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public class CustomerRepository {
 
-     final List<Customer> customerList;
+    final List<Customer> customerList;
 
     public CustomerRepository() {
         customerList = new ArrayList<>();
@@ -18,5 +18,16 @@ public class CustomerRepository {
     public void addNewCustomerAccount(Customer customer) {
         customerList.add(customer);
 
+    }
+
+    public void checkIfEmailIsUnique(String emailToCheck) {
+        if (!customerList.isEmpty()) {
+            for (Customer customer : customerList
+            ) {
+                if (customer.geteMail().equalsIgnoreCase(emailToCheck)) {
+                    throw new NotUniqueException("This E-mail adress is allready used.");
+                }
+            }
+        }
     }
 }

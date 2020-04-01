@@ -8,24 +8,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerRepositoryTest {
 
+    Customer customer;
+    CustomerRepository customerRepository;
+
     @BeforeEach
     void init() {
-        CustomerRepository customerRepository = new CustomerRepository();
-        Customer customer = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
+        customerRepository = new CustomerRepository();
+        customer = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
         customerRepository.addNewCustomerAccount(customer);
     }
 
     @Test
     void whenTwoCustomersAreAdded_assertThatCustomerListSizeEqualsTwo(){
-        CustomerRepository customerRepository = new CustomerRepository();
-        Customer customer = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
-        customerRepository.addNewCustomerAccount(customer);
         Customer second = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
         customerRepository.addNewCustomerAccount(second);
 
-
         Assertions.assertThat(customerRepository.customerList.size()).isEqualTo(2);
-
 
     }
 
