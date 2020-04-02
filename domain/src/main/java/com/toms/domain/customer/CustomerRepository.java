@@ -1,42 +1,37 @@
 package com.toms.domain.customer;
 
-
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class CustomerRepository {
 
-    final List<Customer> customerList;
+    final Map<String, Customer> customerList;
 
     public CustomerRepository() {
-        customerList = new ArrayList<>();
+        customerList = new HashMap<>();
     }
 
     public void addNewCustomerAccount(Customer customer) {
-        customerList.add(customer);
+        customerList.put(customer.geteMail(), customer);
 
     }
 
     public void checkIfEmailIsUnique(String emailToCheck) {
         if (!customerList.isEmpty()) {
-            for (Customer customer : customerList
-            ) {
-                if (customer.geteMail().equalsIgnoreCase(emailToCheck)) {
-                    throw new NotUniqueException("This E-mail adress is allready used.");
-                }
+            if (customerList.containsKey(emailToCheck)) {
+                throw new NotUniqueException("This E-mail adress is allready used.");
             }
         }
     }
 
     public Customer getCustomerByEmail(String customersEmail) {
-        return customerList.stream()
-                .filter(customer -> customer.geteMail().equals(customersEmail))
-                .findFirst()
-                .orElse (null);
-
+        if (!customerList.containsKey(customersEmail)) {
+            throw new IllegalArgumentException("The email adress:" + customersEmail + " is not known in our database!");
+        }
+        return customerList.get(customersEmail);
     }
 }
- // throw new IllegalArgumentException("The email adress:" + customersEmail + " is not known in our database!");
+

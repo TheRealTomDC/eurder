@@ -7,10 +7,12 @@ import java.util.List;
 
 public class Order {
     private final Customer customer;
-    private static int orderNumber = 100;
     private List<ItemGroups> itemGroupsList;
     private int totalPriceOfOrder;
     private boolean orderClosed;
+
+    private final int orderNumber;
+    private static int orderNumberTotal = 100;
 
 
     public Order(Customer customer) {
@@ -18,7 +20,10 @@ public class Order {
         this.itemGroupsList = new ArrayList<>();
         this.totalPriceOfOrder = 0;
         this.orderClosed = false;
-        this.orderNumber = orderNumber++;
+        this.orderNumber = orderNumberTotal++;
+
+
+
 
     }
 

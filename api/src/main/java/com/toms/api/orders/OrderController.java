@@ -1,9 +1,13 @@
 package com.toms.api.orders;
 
+
 import com.toms.service.orderservice.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @RestController
 @RequestMapping(path = "/orders")
@@ -17,9 +21,14 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping(path = "/new-order", produces = "application/json", consumes = "application/json")
+    @PostMapping(path = "/new-order", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public String startNewOrder(@RequestBody String customersEmail) {
         return (orderService.openNewOrder(customersEmail)).toString();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    protected void notUniqueException(IllegalArgumentException e, HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.CONFLICT.value(), e.getMessage());
     }
 }
