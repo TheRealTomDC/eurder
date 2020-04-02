@@ -1,4 +1,4 @@
-package com.toms.service.customerService;
+package com.toms.service.customerservice;
 
 import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;

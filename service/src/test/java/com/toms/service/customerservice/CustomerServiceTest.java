@@ -1,4 +1,4 @@
-package com.toms.service.customerService;
+package com.toms.service.customerservice;
 
 import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;
@@ -6,8 +6,6 @@ import com.toms.domain.customer.CustomerRepository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerServiceTest {
 

@@ -2,9 +2,9 @@ package com.toms.api.customer;
 
 
 import com.toms.domain.customer.NotUniqueException;
-import com.toms.service.customerService.CustomerCreaterDTO;
-import com.toms.service.customerService.CustomerDTO;
-import com.toms.service.customerService.CustomerService;
+import com.toms.service.customerservice.CustomerCreaterDTO;
+import com.toms.service.customerservice.CustomerDTO;
+import com.toms.service.customerservice.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

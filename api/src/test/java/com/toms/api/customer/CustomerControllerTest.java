@@ -3,9 +3,9 @@ package com.toms.api.customer;
 
 
 import com.toms.domain.customer.CustomerRepository;
-import com.toms.service.customerService.CustomerCreaterDTO;
-import com.toms.service.customerService.CustomerDTO;
-import com.toms.service.customerService.CustomerService;
+import com.toms.service.customerservice.CustomerCreaterDTO;
+import com.toms.service.customerservice.CustomerDTO;
+import com.toms.service.customerservice.CustomerService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

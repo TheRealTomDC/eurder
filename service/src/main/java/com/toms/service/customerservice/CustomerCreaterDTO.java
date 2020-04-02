@@ -1,4 +1,4 @@
-package com.toms.service.customerService;
+package com.toms.service.customerservice;
 
 public class CustomerCreaterDTO {
     private String firstName;
