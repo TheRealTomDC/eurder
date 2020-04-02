@@ -32,30 +32,30 @@ Which choices did you make? (List your choices below, remove what is not relevan
  - ....
 ## Progress Story 0 (project setup & technical requirements)
  - [x] Be awesome
- - [ ] Setup Github
- - [ ] Setup Jenkins
- - [ ] Basic setup / skeleton for Spring Boot & Maven
- - [ ] I have my first REST Controller ready
- - [ ] I commit/push my code on a regular basis
+ - [x] Setup Github
+ - [x] Setup Jenkins // thanks for that
+ - [x] Basic setup / skeleton for Spring Boot & Maven
+ - [x] I have my first REST Controller ready
+ - [x] I commit/push my code on a regular basis
  - [ ] Swagger is enabled
 ### Comments:
 ## Story 1
- - [ ] The functional requirements are implemented
- - [ ] The requirements are tested with Postman
- - [ ] The requirements are unit tested
+ - [x] The functional requirements are implemented
+ - [x] The requirements are tested with Postman
+ - [x] The requirements are unit tested
  - [ ] The requirements are integration tested
  - [ ] Proper logging is setup
- - [ ] I did a "codereview" of my own code before declaring it "done".
- - [ ] I commit/push my code when this story was done
+ - [x] I did a "codereview" of my own code before declaring it "done".
+ - [x] I commit/push my code when this story was done
 ### Comments:
 ## Story 2
- - [ ] The functional requirements are implemented
- - [ ] The requirements are tested with Postman
- - [ ] The requirements are unit tested
+ - [x] The functional requirements are implemented
+ - [x] The requirements are tested with Postman
+ - [x] The requirements are unit tested
  - [ ] The requirements are integration tested
  - [ ] Proper logging is setup
- - [ ] I did a "codereview" of my own code before declaring it "done".
- - [ ] I commit/push my code when this story was done
+ - [x] I did a "codereview" of my own code before declaring it "done".
+ - [x] I commit/push my code when this story was done
 ### Comments:
 ## Story 3
  - [ ] The functional requirements are implemented
