@@ -30,4 +30,15 @@ public class CustomerRepository {
             }
         }
     }
+
+    public Customer getCustomerByEmail(String customersEmail) {
+        for (Customer customer : customerList
+        ) {
+            if (customer.geteMail().equalsIgnoreCase(customersEmail)) {
+            }
+            return customer;
+        }
+        throw new IllegalArgumentException("The email adress:" + customersEmail + " is not known in our database!");
+    }
 }
+

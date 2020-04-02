@@ -7,6 +7,7 @@ public class ItemDTO {
     private String description;
     private double price;
     private int amountInStock;
+    public static final String CURRENCY = "EURO";
 
     public ItemDTO(Item item) {
         this.name = item.getName();
@@ -23,11 +24,15 @@ public class ItemDTO {
         return description;
     }
 
-    public double getPrice() {
-        return price;
+    public String getPrice() {
+        return price +" "+ getCURRENCY();
     }
 
     public int getAmountInStock() {
         return amountInStock;
+    }
+
+    public static String getCURRENCY() {
+        return CURRENCY;
     }
 }
