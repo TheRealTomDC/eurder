@@ -1,7 +1,5 @@
 package com.toms.api.orders;
 
-import com.toms.domain.customer.Customer;
-import com.toms.service.orderservice.OrderOpeningDTO;
 import com.toms.service.orderservice.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
