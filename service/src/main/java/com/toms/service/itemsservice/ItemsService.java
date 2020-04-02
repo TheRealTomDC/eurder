@@ -16,6 +16,7 @@ public class ItemsService {
     }
 
     public ItemDTO addNewItemService(ItemCreaterDTO itemCreaterDTO){
+        itemsRepository.checkIfItemIsNotAllreadyInStock(itemCreaterDTO.getName());
         Item newItem = new Item(itemCreaterDTO.getName(),itemCreaterDTO.getDescription(),itemCreaterDTO.getPrice(),itemCreaterDTO.getAmountInStock());
         itemsRepository.addNewItemToRepository(newItem);
         return new ItemDTO(newItem);

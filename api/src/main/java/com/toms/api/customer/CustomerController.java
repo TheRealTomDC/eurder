@@ -31,7 +31,7 @@ public class CustomerController {
 
     @ExceptionHandler(NotUniqueException.class)
     protected void notUniqueException(NotUniqueException e, HttpServletResponse response) throws IOException {
-        response.sendError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+        response.sendError(HttpStatus.CONFLICT.value(), e.getMessage());
     }
 
 
