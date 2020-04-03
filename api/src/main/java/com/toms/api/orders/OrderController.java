@@ -1,6 +1,7 @@
 package com.toms.api.orders;
 
 
+import com.toms.service.orderservice.ItemGroupCreatedDTO;
 import com.toms.service.orderservice.ItemGroupCreatorDTO;
 import com.toms.service.orderservice.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,12 @@ public class OrderController {
     public String startNewOrder(@RequestBody String customersEmail) {
         return (orderService.openNewOrder(customersEmail)).toString();
     }
-    @PostMapping(path = "/makeItemGroup", produces = "application/json", consumes ="application/json" )
-    @ResponseStatus(HttpStatus.CREATED)
-    public String makeItemGroup(@RequestBody ItemGroupCreatorDTO itemGroupCreatorDTO){
-        return (orderService.makeNewItemGroupService(itemGroupCreatorDTO)).toString();
 
+    @PostMapping(path = "/makeItemGroup", produces = "application/json", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String makeItemGroup(@RequestBody ItemGroupCreatorDTO itemGroupCreatorDTO) {
+        ItemGroupCreatedDTO toPrintOut = (orderService.makeNewItemGroupService(itemGroupCreatorDTO));
+        return toPrintOut.toString();
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

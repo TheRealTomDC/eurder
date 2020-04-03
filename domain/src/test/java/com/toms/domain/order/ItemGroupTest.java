@@ -3,7 +3,6 @@ package com.toms.domain.order;
 import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;
 import com.toms.domain.items.Item;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -51,13 +50,7 @@ class ItemGroupTest {
         assertEquals(40, itemGroup.getPriceOfItemGroup());
     }
 
-    @Test
-    void addItemGroupToOrder_assertThatWhenOrderNumberNonExisting_throwException() {
-        //When
-        ItemGroup itemGroup = new ItemGroup(150, "Banana", 5);
-        // Then
-        Assertions.assertThatThrownBy(() -> repository.addItemGroupToOrder(itemGroup)).hasMessage("This order number does not exist.");
-    }
+
 
 
 

@@ -33,5 +33,7 @@ public class ItemsRepository {
         return itemsMap.get(name).getAmountInStock();
     }
 
-
+    public Map<String, Item> getItemsMap() {
+        return itemsMap;
+    }
 }

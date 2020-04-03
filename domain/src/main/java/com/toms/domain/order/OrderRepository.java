@@ -11,21 +11,26 @@ import java.util.Map;
 @Repository
 public class OrderRepository {
 
-    private final Map<Integer, Order> ordersRepository;
+    private final Map<Integer, Order> ordersRepositoryMap;
 
     @Autowired
     public OrderRepository() {
-        this.ordersRepository = new HashMap<>();
+        this.ordersRepositoryMap = new HashMap<>();
     }
 
     public int addOrderToRepository(Customer customer){
         Order toCreate = new Order(customer);
-        ordersRepository.put(toCreate.getOrderNumber(),toCreate);
+        ordersRepositoryMap.put(toCreate.getOrderNumber(),toCreate);
+
         return toCreate.getOrderNumber();
     }
 
     public void addItemGroupToOrder(ItemGroup toUse) {
-        ordersRepository.get(toUse.getOrderNumber()).addTheItemGroup(toUse);
+        ordersRepositoryMap.get(toUse.getOrderNumber()).addTheItemGroup(toUse);
 
+    }
+
+    public Map<Integer, Order> getOrdersRepositoryMap() {
+        return ordersRepositoryMap;
     }
 }

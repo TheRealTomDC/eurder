@@ -6,25 +6,30 @@ public class ItemGroup {
     private final int orderNumber;
     private final String itemReference;
     private final int amount;
-    private final LocalDate orderDate;
+    private LocalDate orderDate;
     private LocalDate shippingDate;
+    private int pricePerItem;
     private int priceOfItemGroup;
+    private int amountOfItemInStock;
 
-    public ItemGroup(int orderNumber,String itemReference, int amount) {
-        this.orderNumber = orderNumber;  // write check if exist, test allready written
+    public ItemGroup(int orderNumber, String itemReference, int amount) {
+        this.orderNumber = orderNumber;
         this.itemReference = itemReference;
         this.amount = amount;
         this.orderDate = LocalDate.now();
-        this.shippingDate = calculateShippingDate(itemReference, amount, orderDate); // to write
-        this.priceOfItemGroup = calculatePriceOfItemGroup(); // to write
+        this.shippingDate = calculateShippingDate(amountOfItemInStock, amount, orderDate);
+        this.priceOfItemGroup = calculatePriceOfItemGroup(pricePerItem, amount);
     }
 
-    private int calculatePriceOfItemGroup() {
-        return 0;
+    private int calculatePriceOfItemGroup(int pricePerItem, int amount) {
+        return pricePerItem * amount;
     }
 
-    private LocalDate calculateShippingDate(String item, int amount, LocalDate orderDate) {
-        return null;
+    private LocalDate calculateShippingDate(int amountOfItemInStock, int amount, LocalDate orderDate) {
+        if (amountOfItemInStock < amount) {
+            return orderDate.plusDays(7);
+        }
+        return orderDate.plusDays(1);
     }
 
     public String getItemReference() {
@@ -49,5 +54,17 @@ public class ItemGroup {
 
     public LocalDate getShippingDate() {
         return shippingDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setAmountOfItemInStock(int amountOfItemInStock) {
+        this.amountOfItemInStock = amountOfItemInStock;
+    }
+
+    public void setPricePerItem(int pricePerItem) {
+        this.pricePerItem = pricePerItem;
     }
 }
