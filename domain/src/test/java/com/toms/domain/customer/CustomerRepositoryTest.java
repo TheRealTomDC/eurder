@@ -14,13 +14,13 @@ class CustomerRepositoryTest {
     @BeforeEach
     void init() {
         customerRepository = new CustomerRepository();
-        customer = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
+        customer = new Customer("tom","dc","tom@mail.com",new Adress("broek",5,9030,"Gent"),"092277412");
         customerRepository.addNewCustomerAccount(customer);
     }
 
     @Test
     void whenTwoCustomersAreAdded_assertThatCustomerListSizeEqualsTwo(){
-        Customer second = new Customer("tom","dc","to@dd.dd",new Adress("broek",5,9030,"Gent"),"092277412");
+        Customer second = new Customer("tom","dc","nele@mail.com",new Adress("broek",5,9030,"Gent"),"092277412");
         customerRepository.addNewCustomerAccount(second);
 
         Assertions.assertThat(customerRepository.customerList.size()).isEqualTo(2);
