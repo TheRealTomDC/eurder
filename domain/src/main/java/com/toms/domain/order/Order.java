@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Order {
     private final Customer customer;
-    private List<ItemGroups> itemGroupsList;
+    private List<ItemGroup> itemGroupsList;
     private int totalPriceOfOrder;
     private boolean orderClosed;
 
@@ -35,7 +35,7 @@ public class Order {
         return orderNumber;
     }
 
-    public List<ItemGroups> getItemGroupsList() {
+    public List<ItemGroup> getItemGroupsList() {
         return itemGroupsList;
     }
 
@@ -45,5 +45,9 @@ public class Order {
 
     public boolean isOrderClosed() {
         return orderClosed;
+    }
+
+    public void addTheItemGroup(ItemGroup toUse) {
+        itemGroupsList.add(toUse);
     }
 }

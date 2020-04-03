@@ -24,4 +24,8 @@ public class OrderRepository {
         return toCreate.getOrderNumber();
     }
 
+    public void addItemGroupToOrder(ItemGroup toUse) {
+        ordersRepository.get(toUse.getOrderNumber()).addTheItemGroup(toUse);
+
+    }
 }

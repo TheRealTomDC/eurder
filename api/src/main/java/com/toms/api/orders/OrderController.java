@@ -1,6 +1,7 @@
 package com.toms.api.orders;
 
 
+import com.toms.service.orderservice.ItemGroupCreatorDTO;
 import com.toms.service.orderservice.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,12 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public String startNewOrder(@RequestBody String customersEmail) {
         return (orderService.openNewOrder(customersEmail)).toString();
+    }
+    @PostMapping(path = "/makeItemGroup", produces = "application/json", consumes ="application/json" )
+    @ResponseStatus(HttpStatus.CREATED)
+    public String makeItemGroup(@RequestBody ItemGroupCreatorDTO itemGroupCreatorDTO){
+        return (orderService.makeNewItemGroupService(itemGroupCreatorDTO)).toString();
+
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
