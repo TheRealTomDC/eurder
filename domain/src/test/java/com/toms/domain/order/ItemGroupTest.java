@@ -25,7 +25,7 @@ class ItemGroupTest {
         // Given
         Item item = new Item("Something", "that", 10.0, 5);
         // When
-        ItemGroup itemGroup = new ItemGroup(100, "Something", 6);
+        ItemGroup itemGroup = new ItemGroup(100, "Something", 6, 10, false);
         // Then
         assertEquals(itemGroup.getOrderDate().plusDays(7), itemGroup.getShippingDate());
     }
@@ -35,7 +35,7 @@ class ItemGroupTest {
         // Given
         Item item = new Item("Something", "that", 10.0, 5);
         // When
-        ItemGroup itemGroup = new ItemGroup(100, "Something", 4);
+        ItemGroup itemGroup = new ItemGroup(100, "Something", 4, 10, true);
         // Then
         assertEquals(itemGroup.getOrderDate().plusDays(1), itemGroup.getShippingDate());
     }
@@ -45,10 +45,12 @@ class ItemGroupTest {
         // Given
         Item item = new Item("Something", "that", 10.0, 5);
         // When
-        ItemGroup itemGroup = new ItemGroup(100, "Something", 4);
+        ItemGroup itemGroup = new ItemGroup(100, "Something", 4, 10, true);
         // Then
         assertEquals(40, itemGroup.getPriceOfItemGroup());
     }
+
+
 
 
 

@@ -8,8 +8,10 @@ public class ItemGroupCreatedDTO {
     private final int orderNumber;
     private final String itemToBuy;
     private final int amount;
-    private int totalPriceOfItemGroup;
+    private double totalPriceOfItemGroup;
     private LocalDate shippingDate;
+    public static final String CURRENCY = "EURO";
+
 
     public ItemGroupCreatedDTO(ItemGroup itemGroup) {
         this.orderNumber = itemGroup.getOrderNumber();
@@ -22,8 +24,16 @@ public class ItemGroupCreatedDTO {
 
     @Override
     public String toString() {
-        return "This item was added to your shopping cart (order number: "+ orderNumber + "). \n" +
-                amount + " piece(s) of " + itemToBuy + " with a total price of " + totalPriceOfItemGroup + ".\n" +
+        return "This item was added to your shopping cart (order number: " + orderNumber + "). \n" +
+                amount + " piece(s) of " + itemToBuy + " with a total price of " + totalPriceOfItemGroup + " " + CURRENCY + ".\n" +
                 "These items will be shipped out on " + shippingDate + ".";
+    }
+
+    public double getTotalPriceOfItemGroup() {
+        return totalPriceOfItemGroup;
+    }
+
+    public LocalDate getShippingDate() {
+        return shippingDate;
     }
 }

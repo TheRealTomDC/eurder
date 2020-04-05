@@ -17,6 +17,10 @@ public class Item {
 
     }
 
+    public void setAmountInStock(int amountInStock) {
+        this.amountInStock = amountInStock;
+    }
+
     public String getName() {
         return name;
     }

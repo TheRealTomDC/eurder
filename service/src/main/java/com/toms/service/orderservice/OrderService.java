@@ -30,13 +30,24 @@ public class OrderService {
 
     public ItemGroupCreatedDTO makeNewItemGroupService(ItemGroupCreatorDTO itemGroupCreatorDTO) {
         checkIfValidInput(itemGroupCreatorDTO);
-        ItemGroup toUse = makeNewItemGroup(itemGroupCreatorDTO);
+        double price = getPriceOfItem(itemGroupCreatorDTO);
+        boolean checkIfInStock = checkIfItemIsInStock(itemGroupCreatorDTO);
+        ItemGroup toUse = makeNewItemGroup(itemGroupCreatorDTO,price,checkIfInStock);
         orderRepository.addItemGroupToOrder(toUse);
         return new ItemGroupCreatedDTO(toUse);
 
 
     }
 
+    private boolean checkIfItemIsInStock(ItemGroupCreatorDTO itemGroupCreatorDTO) {
+        return itemsRepository.checkAndMaybeAdjustStock(itemGroupCreatorDTO.getItemToBuy(), itemGroupCreatorDTO.getAmount());
+    }
+
+    private double getPriceOfItem(ItemGroupCreatorDTO itemGroupCreatorDTO) {
+        return itemsRepository.getItemPrice(itemGroupCreatorDTO.getItemToBuy());
+    }
+
+    /** BEGIN METHODS valid input check for making ItemGroup */
     private void checkIfValidInput(ItemGroupCreatorDTO itemGroupCreatorDTO) {
        checkIfOrderNumberExists(itemGroupCreatorDTO.getOrderNumber());
         checkIfItemExists(itemGroupCreatorDTO.getItemToBuy());
@@ -55,8 +66,10 @@ public class OrderService {
             throw new IllegalArgumentException("The ordernumber " + orderNumber + " does not exist.");
         }
     }
+    /** END OF METHODS valid input check for making ItemGroup */
 
-    private ItemGroup makeNewItemGroup(ItemGroupCreatorDTO itemGroupCreatorDTO) {
-        return new ItemGroup(itemGroupCreatorDTO.getOrderNumber(), itemGroupCreatorDTO.getItemToBuy(), itemGroupCreatorDTO.getAmount());
+
+    private ItemGroup makeNewItemGroup(ItemGroupCreatorDTO itemGroupCreatorDTO, double price, boolean checkIfInStock) {
+        return new ItemGroup(itemGroupCreatorDTO.getOrderNumber(), itemGroupCreatorDTO.getItemToBuy(), itemGroupCreatorDTO.getAmount(),price,checkIfInStock);
     }
 }

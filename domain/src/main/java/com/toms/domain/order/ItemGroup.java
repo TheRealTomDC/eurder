@@ -8,29 +8,28 @@ public class ItemGroup {
     private final int amount;
     private LocalDate orderDate;
     private LocalDate shippingDate;
-    private int pricePerItem;
-    private int priceOfItemGroup;
-    private int amountOfItemInStock;
+    private double priceOfItemGroup;
 
-    public ItemGroup(int orderNumber, String itemReference, int amount) {
+    public ItemGroup(int orderNumber, String itemReference, int amount, double price, boolean checkIfInStock) {
         this.orderNumber = orderNumber;
         this.itemReference = itemReference;
         this.amount = amount;
         this.orderDate = LocalDate.now();
-        this.shippingDate = calculateShippingDate(amountOfItemInStock, amount, orderDate);
-        this.priceOfItemGroup = calculatePriceOfItemGroup(pricePerItem, amount);
+        this.shippingDate = calculateShippingDate(checkIfInStock, orderDate);
+        this.priceOfItemGroup = calculatePriceOfItemGroup(price, amount);
     }
 
-    private int calculatePriceOfItemGroup(int pricePerItem, int amount) {
+    private LocalDate calculateShippingDate(boolean checkIfInStock, LocalDate orderDate) {
+        if (checkIfInStock) {
+            return orderDate.plusDays(1);
+        }
+        return orderDate.plusDays(7);
+    }
+
+    private double calculatePriceOfItemGroup(double pricePerItem, int amount) {
         return pricePerItem * amount;
     }
 
-    private LocalDate calculateShippingDate(int amountOfItemInStock, int amount, LocalDate orderDate) {
-        if (amountOfItemInStock < amount) {
-            return orderDate.plusDays(7);
-        }
-        return orderDate.plusDays(1);
-    }
 
     public String getItemReference() {
         return itemReference;
@@ -40,7 +39,7 @@ public class ItemGroup {
         return orderNumber;
     }
 
-    public int getPriceOfItemGroup() {
+    public double getPriceOfItemGroup() {
         return priceOfItemGroup;
     }
 
@@ -56,15 +55,8 @@ public class ItemGroup {
         return shippingDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
 
-    public void setAmountOfItemInStock(int amountOfItemInStock) {
-        this.amountOfItemInStock = amountOfItemInStock;
-    }
 
-    public void setPricePerItem(int pricePerItem) {
-        this.pricePerItem = pricePerItem;
-    }
+
+
 }

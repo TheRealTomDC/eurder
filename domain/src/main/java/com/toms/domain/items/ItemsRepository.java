@@ -8,10 +8,14 @@ import java.util.Map;
 @Repository
 public class ItemsRepository {
 
-    private final Map <String,Item> itemsMap;
+    private final Map<String, Item> itemsMap;
 
     public ItemsRepository() {
         this.itemsMap = new HashMap();
+    }
+
+    public double getItemPrice(String itemToBuy) {
+        return itemsMap.get(itemToBuy).getPrice();
     }
 
     public void addNewItemToRepository(Item item) {
@@ -29,11 +33,19 @@ public class ItemsRepository {
         }
     }
 
-    public int getAmountOfGivenItem(String name){
+    public int getAmountOfGivenItem(String name) {
         return itemsMap.get(name).getAmountInStock();
     }
 
     public Map<String, Item> getItemsMap() {
         return itemsMap;
+    }
+
+    public boolean checkAndMaybeAdjustStock(String itemToBuy, int amountToBuy) {
+        if (getAmountOfGivenItem(itemToBuy) < amountToBuy) {
+            return false;
+        }
+        itemsMap.get(itemToBuy).setAmountInStock(getAmountOfGivenItem(itemToBuy) - amountToBuy);
+        return true;
     }
 }

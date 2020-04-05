@@ -11,65 +11,85 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 
 class OrderServiceTest {
 
     OrderRepository orderRepository = new OrderRepository();
     CustomerRepository customerRepository = new CustomerRepository();
     ItemsRepository itemsRepository = new ItemsRepository();
-    Item item = new Item("buyThis","this",10,5);
+    Item item = new Item("buyThis", "this", 10, 5);
 
-    OrderService service = new OrderService(customerRepository,orderRepository, itemsRepository);
-    Customer customer =  new Customer("tom","dc","tom@mail.com",new Adress("broek",5,9030,"Gent"),"092277412");
-    ItemGroupCreatorDTO itemGroupCreatorDTO = new ItemGroupCreatorDTO(100,"buyThis",10);
+    OrderService service = new OrderService(customerRepository, orderRepository, itemsRepository);
+    Customer customer = new Customer("tom", "dc", "tom@mail.com", new Adress("broek", 5, 9030, "Gent"), "092277412");
+    ItemGroupCreatorDTO itemGroupCreatorDTO = new ItemGroupCreatorDTO(100, "buyThis", 10);
+    ItemGroupCreatorDTO secondItemGroupCreatorDTO = new ItemGroupCreatorDTO(100, "buyThis", 4);
 
     @BeforeEach
-    void init(){
+    void init() {
         orderRepository.addOrderToRepository(customer);  // making sure order number 100 exists
         itemsRepository.addNewItemToRepository(item);
     }
+
     @Test
-    void whenTryingToCreateNewOrder_ifNoKnownCustomer_ThrowException(){
+    void whenTryingToCreateNewOrder_ifNoKnownCustomer_ThrowException() {
         // Given
         String customersEmail = "tom@gmail.com";
-        org.assertj.core.api.Assertions.assertThatThrownBy(()->service.openNewOrder(customersEmail)).isInstanceOf(IllegalArgumentException.class).hasMessage("The email adress:tom@gmail.com is not known in our database!");
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> service.openNewOrder(customersEmail)).isInstanceOf(IllegalArgumentException.class).hasMessage("The email adress:tom@gmail.com is not known in our database!");
     }
+
     @Test
-    void makeNewItemGroupService_ifThisRuns_makeSureThatIsAddedToGroupItemList(){
+        //doesn't work when run all, does when run separately
+    void makeNewItemGroupService_ifThisRuns_makeSureThatIsAddedToGroupItemList() {
         //When
-    //    orderRepository.addOrderToRepository(customer);
+        //    orderRepository.addOrderToRepository(customer);
         service.makeNewItemGroupService(itemGroupCreatorDTO);
         //Then
-        Assertions.assertEquals(1,orderRepository.getOrdersRepositoryMap().get(itemGroupCreatorDTO.getOrderNumber()).getItemGroupsList().size());
+        Assertions.assertEquals(1, orderRepository.getOrdersRepositoryMap().get(itemGroupCreatorDTO.getOrderNumber()).getItemGroupsList().size());
     }
 
     @Test
     void addItemGroupToOrder_assertThatWhenOrderNumberNonExisting_throwException() {
         //When
-        ItemGroupCreatorDTO secondOne = new ItemGroupCreatorDTO(150,"buyThis",10);
+        ItemGroupCreatorDTO secondOne = new ItemGroupCreatorDTO(150, "buyThis", 10);
         // Then
-        org.assertj.core.api.Assertions.assertThatThrownBy(()->service.makeNewItemGroupService(secondOne)).hasMessage("The ordernumber 150 does not exist.");
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> service.makeNewItemGroupService(secondOne)).hasMessage("The ordernumber 150 does not exist.");
 
     }
 
     @Test
-    void addItemGroupToOrder_assertThatWhenItemNonExisting_throwException(){
+        //doesn't work when run all, does when run separately
+    void addItemGroupToOrder_assertThatWhenItemNonExisting_throwException() {
         // When
-        ItemGroupCreatorDTO secondOne = new ItemGroupCreatorDTO(100,"DontBuyThis",10);
+        ItemGroupCreatorDTO secondOne = new ItemGroupCreatorDTO(100, "DontBuyThis", 10);
         //Then
-        org.assertj.core.api.Assertions.assertThatThrownBy(()->service.makeNewItemGroupService(secondOne)).hasMessage("We don't sell DontBuyThis's.");
+        org.assertj.core.api.Assertions.assertThatThrownBy(() -> service.makeNewItemGroupService(secondOne)).hasMessage("We don't sell DontBuyThis's.");
+    }
 
-
-
+    @Test
+    void makeNewItemGroupService_WhenMethodRuns_inStock_checkOutReturnCreatorDTOIsCorrect() {
+        //When
+        ItemGroupCreatedDTO created = service.makeNewItemGroupService(secondItemGroupCreatorDTO);
+        //Then
+        Assertions.assertEquals(40, created.getTotalPriceOfItemGroup());
+        Assertions.assertEquals(LocalDate.now().plusDays(1), created.getShippingDate());
+        int stockOfItemToBuy = itemsRepository.getAmountOfGivenItem(secondItemGroupCreatorDTO.getItemToBuy());
+        Assertions.assertEquals(1, stockOfItemToBuy);
 
     }
 
-
-
-
-
-
-
+    @Test
+        //doesn't work when run all, does when run separately
+    void makeNewItemGroupService_WhenMethodRuns_notInStock_checkOutReturnCreatorDTOIsCorrect() {
+        //When
+        ItemGroupCreatedDTO created = service.makeNewItemGroupService(itemGroupCreatorDTO);
+        //Then
+        Assertions.assertEquals(100, created.getTotalPriceOfItemGroup());
+        Assertions.assertEquals(LocalDate.now().plusDays(7), created.getShippingDate());
+        int stockOfItemToBuy = itemsRepository.getAmountOfGivenItem(itemGroupCreatorDTO.getItemToBuy());
+        Assertions.assertEquals(5, stockOfItemToBuy);
+    }
 
 
 }
