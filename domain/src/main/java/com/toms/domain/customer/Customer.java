@@ -1,11 +1,24 @@
 package com.toms.domain.customer;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "customer")
 public class Customer {
-    String firstName;
-    String lastName;
-    String eMail;
-    Adress adress;
-    String phoneNumber;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
+    @Column
+    private String eMail;
+    @Embedded
+    private Adress adress;
+    @Column
+    private String phoneNumber;
 
 
     public Customer(String firstName, String lastName, String eMail, Adress adress, String phoneNumber) {
