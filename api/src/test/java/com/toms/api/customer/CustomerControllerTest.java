@@ -9,9 +9,13 @@ import com.toms.service.customerservice.CustomerService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 class CustomerControllerTest {
+
+    @Autowired
+            private CustomerRepository customerRepository;
     CustomerCreaterDTO createrDTO;
     CustomerService service;
     CustomerController controller;
@@ -20,7 +24,7 @@ class CustomerControllerTest {
     @BeforeEach
     void init(){
         createrDTO = new CustomerCreaterDTO("tom","dc","to@dd.dd","broek",5,9030,"Gent","092277412");
-        service = new CustomerService(new CustomerRepository());
+        service = new CustomerService(customerRepository);
         controller = new CustomerController(service);
     }
 

@@ -22,11 +22,11 @@ public class OrderService {
         this.itemsRepository = itemsRepository;
     }
 
-    public OrderOpeningDTO openNewOrder(String customersEmail) {
+    /*public OrderOpeningDTO openNewOrder(String customersEmail) {
         Customer customerToUse = customerRepository.getCustomerByEmail(customersEmail);
         int orderNumberCreated = orderRepository.addOrderToRepository(customerToUse);
         return new OrderOpeningDTO(customerToUse, orderNumberCreated);
-    }
+    }*/
 
     public ItemGroupCreatedDTO makeNewItemGroupService(ItemGroupCreatorDTO itemGroupCreatorDTO) {
         checkIfValidInput(itemGroupCreatorDTO);
