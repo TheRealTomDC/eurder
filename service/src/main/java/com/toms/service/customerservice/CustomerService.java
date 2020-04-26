@@ -10,23 +10,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
     private final CustomerRepository customerRepository;
+    private final Validation validation;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, Validation validation) {
         this.customerRepository = customerRepository;
+        this.validation = validation;
     }
 
+
     public CustomerDTO createCustomerService(CustomerCreaterDTO customerCreaterDTO) {
-     //   checkIfValidInput(customerCreaterDTO);
-        Customer customer = new Customer(customerCreaterDTO.getFirstName(),customerCreaterDTO.getLastName(),customerCreaterDTO.geteMail(),new Adress(customerCreaterDTO.getStreet(),customerCreaterDTO.getHouseNumber(),customerCreaterDTO.getPostalCode(),customerCreaterDTO.getCity()),customerCreaterDTO.getPhoneNumber());
+        checkIfValidInput(customerCreaterDTO);
+        Customer customer = new Customer(customerCreaterDTO.getFirstName(), customerCreaterDTO.getLastName(), customerCreaterDTO.geteMail(), new Adress(customerCreaterDTO.getStreet(), customerCreaterDTO.getHouseNumber(), customerCreaterDTO.getPostalCode(), customerCreaterDTO.getCity()), customerCreaterDTO.getPhoneNumber());
         customerRepository.save(customer);
         return new CustomerDTO(customer);
     }
 
-  /*  private CustomerCreaterDTO checkIfValidInput(CustomerCreaterDTO customerCreaterDTO) {
+    private void checkIfValidInput(CustomerCreaterDTO customerCreaterDTO) {
         String emailToCheck = customerCreaterDTO.geteMail();
-        Validation.checkIfEmailIsUnique(emailToCheck);
-        return customerCreaterDTO;
+        validation.checkIfEmailIsUnique(emailToCheck);
 
-    }*/
+
+    }
 }

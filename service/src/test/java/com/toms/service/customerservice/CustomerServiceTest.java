@@ -4,6 +4,7 @@ import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;
 import com.toms.domain.customer.CustomerRepository;
 
+import com.toms.service.Validation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ class CustomerServiceTest {
 
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private Validation validation;
 
-    CustomerService service = new CustomerService(customerRepository);
+    CustomerService service = new CustomerService(customerRepository,validation);
     CustomerCreaterDTO createrDTO = new CustomerCreaterDTO("tom", "dc", "tom@mail.com", "broek", 5, 9030, "Gent", "092277412");
 
 

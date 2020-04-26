@@ -29,6 +29,9 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Customer() {
+    }
+
     public String getFirstName() {
         return firstName;
     }
