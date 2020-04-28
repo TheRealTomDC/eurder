@@ -3,21 +3,22 @@ package com.toms.service.customerservice;
 import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;
 import com.toms.domain.customer.CustomerRepository;
-import com.toms.service.Validation;
+import com.toms.service.validationservice.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class CustomerService {
-    private final CustomerRepository customerRepository;
-    private final Validation validation;
+
+
+    private CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository, Validation validation) {
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.validation = validation;
     }
-
 
     public CustomerDTO createCustomerService(CustomerCreaterDTO customerCreaterDTO) {
         checkIfValidInput(customerCreaterDTO);
@@ -28,7 +29,7 @@ public class CustomerService {
 
     private void checkIfValidInput(CustomerCreaterDTO customerCreaterDTO) {
         String emailToCheck = customerCreaterDTO.geteMail();
-        validation.checkIfEmailIsUnique(emailToCheck);
+        Validation.checkIfEmailIsUnique(emailToCheck);
 
 
     }

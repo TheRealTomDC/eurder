@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 // is because of automatic key numbering, he can erase the input but keeps the key,
 // solve this by (Moking maybe?) test database?
 
-
+@SpringBootTest
 class OrderServiceTest {
 
     @Autowired

@@ -1,25 +1,26 @@
-package com.toms.service;
+package com.toms.service.validationservice;
 
 import com.toms.domain.customer.Customer;
 import com.toms.domain.customer.CustomerRepository;
 import com.toms.domain.customer.NotUniqueException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 
 @Service
 public class Validation {
 
-    private final CustomerRepository customerRepository;
+
+    private static CustomerRepository customerRepository;
 
     @Autowired
     public Validation(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public void checkIfEmailIsUnique(String emailToCheck) {
+    public static void checkIfEmailIsUnique(String emailToCheck) {
         if (!(customerRepository.count() == 0)) {
             Optional<Customer> toCheck = (customerRepository.findByeMail(emailToCheck));
             if (toCheck.isPresent()) {

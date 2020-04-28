@@ -1,6 +1,7 @@
 package com.toms.domain.customer;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
@@ -55,5 +56,23 @@ public class Customer {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                Objects.equals(firstName, customer.firstName) &&
+                Objects.equals(lastName, customer.lastName) &&
+                Objects.equals(eMail, customer.eMail) &&
+                Objects.equals(adress, customer.adress) &&
+                Objects.equals(phoneNumber, customer.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, eMail, adress, phoneNumber);
     }
 }
