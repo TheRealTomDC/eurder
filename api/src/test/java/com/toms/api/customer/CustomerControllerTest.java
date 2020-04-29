@@ -30,7 +30,7 @@ class CustomerControllerTest {
 
     @BeforeEach
     void init() {
-        createrDTO = new CustomerCreaterDTO("tom", "dc", "to@ddqfqqdsqgdqd.dd", "broek", 5, 9030, "Gent", "092277412");
+        createrDTO = new CustomerCreaterDTO("tom", "dc", "to@dfqqdsqgdqd.dd", "broek", 5, 9030, "Gent", "092277412");
         controller = new CustomerController(customerService);
     }
 
