@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ItemsControllerTest {
 
-    private ItemsController itemsController;
-    private ItemsRepository itemsRepository;
+    private final ItemsController itemsController;
+    private final ItemsRepository itemsRepository;
 
     @Autowired
     public ItemsControllerTest(ItemsController itemsController, ItemsRepository itemsRepository) {

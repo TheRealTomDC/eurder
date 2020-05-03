@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 public class Validation {
 
 
-    private CustomerRepository customerRepository;
-    private ItemsRepository itemsRepository;
+    private final CustomerRepository customerRepository;
+    private final ItemsRepository itemsRepository;
 
     @Autowired
     public Validation(CustomerRepository customerRepository, ItemsRepository itemsRepository) {
