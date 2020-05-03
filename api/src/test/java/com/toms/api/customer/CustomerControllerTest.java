@@ -1,8 +1,5 @@
 package com.toms.api.customer;
 
-
-import com.toms.domain.customer.Adress;
-import com.toms.domain.customer.Customer;
 import com.toms.domain.customer.CustomerRepository;
 import com.toms.service.customerservice.CustomerCreaterDTO;
 import com.toms.service.customerservice.CustomerDTO;

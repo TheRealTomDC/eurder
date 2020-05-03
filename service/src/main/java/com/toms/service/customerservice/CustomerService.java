@@ -14,10 +14,12 @@ public class CustomerService {
 
 
     private CustomerRepository customerRepository;
+    private Validation validation;
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, Validation validation) {
         this.customerRepository = customerRepository;
+        this.validation = validation;
     }
 
     public CustomerDTO createCustomerService(CustomerCreaterDTO customerCreaterDTO) {
@@ -29,7 +31,7 @@ public class CustomerService {
 
     private void checkIfValidInput(CustomerCreaterDTO customerCreaterDTO) {
         String emailToCheck = customerCreaterDTO.geteMail();
-        Validation.checkIfEmailIsUnique(emailToCheck);
+        validation.checkIfEmailIsUnique(emailToCheck);
 
 
     }

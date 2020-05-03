@@ -1,3 +1,4 @@
+/*
 package com.toms.service.orderservice;
 
 import com.toms.domain.customer.Customer;
@@ -22,11 +23,13 @@ public class OrderService {
         this.itemsRepository = itemsRepository;
     }
 
-    /*public OrderOpeningDTO openNewOrder(String customersEmail) {
+    */
+/*public OrderOpeningDTO openNewOrder(String customersEmail) {
         Customer customerToUse = customerRepository.getCustomerByEmail(customersEmail);
         int orderNumberCreated = orderRepository.addOrderToRepository(customerToUse);
         return new OrderOpeningDTO(customerToUse, orderNumberCreated);
-    }*/
+    }*//*
+
 
     public ItemGroupCreatedDTO makeNewItemGroupService(ItemGroupCreatorDTO itemGroupCreatorDTO) {
         checkIfValidInput(itemGroupCreatorDTO);
@@ -47,9 +50,11 @@ public class OrderService {
         return itemsRepository.getItemPrice(itemGroupCreatorDTO.getItemToBuy());
     }
 
-    /**
+    */
+/**
      * BEGIN METHODS valid input check for making ItemGroup
-     */
+     *//*
+
     private void checkIfValidInput(ItemGroupCreatorDTO itemGroupCreatorDTO) {
         checkIfOrderNumberExists(itemGroupCreatorDTO.getOrderNumber());
         checkIfItemExists(itemGroupCreatorDTO.getItemToBuy());
@@ -69,12 +74,15 @@ public class OrderService {
         }
     }
 
-    /**
+    */
+/**
      * END OF METHODS valid input check for making ItemGroup
-     */
+     *//*
+
 
 
     private ItemGroup makeNewItemGroup(ItemGroupCreatorDTO itemGroupCreatorDTO, double price, boolean checkIfInStock) {
         return new ItemGroup(itemGroupCreatorDTO.getOrderNumber(), itemGroupCreatorDTO.getItemToBuy(), itemGroupCreatorDTO.getAmount(), price, checkIfInStock);
     }
 }
+*/

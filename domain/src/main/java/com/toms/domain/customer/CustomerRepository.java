@@ -1,7 +1,5 @@
 package com.toms.domain.customer;
 
-
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

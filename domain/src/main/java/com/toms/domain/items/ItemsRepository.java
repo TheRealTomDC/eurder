@@ -1,18 +1,13 @@
 package com.toms.domain.items;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
-@Repository
-public class ItemsRepository {
+public interface ItemsRepository extends CrudRepository<Item,Integer> {
 
-    private final Map<String, Item> itemsMap;
-
-    public ItemsRepository() {
-        this.itemsMap = new HashMap();
-    }
+        Optional<Item> findByName(String name);
+/*
 
     public double getItemPrice(String itemToBuy) {
         return itemsMap.get(itemToBuy).getPrice();
@@ -47,5 +42,5 @@ public class ItemsRepository {
         }
         itemsMap.get(itemToBuy).setAmountInStock(getAmountOfGivenItem(itemToBuy) - amountToBuy);
         return true;
-    }
+    }*/
 }

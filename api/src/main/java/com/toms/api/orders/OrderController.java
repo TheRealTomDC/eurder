@@ -1,3 +1,4 @@
+/*
 package com.toms.api.orders;
 
 
@@ -23,11 +24,13 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-   /* @PostMapping(path = "/new-order", produces = "application/json")
+   */
+/* @PostMapping(path = "/new-order", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public String startNewOrder(@RequestBody String customersEmail) {
         return (orderService.openNewOrder(customersEmail)).toString();
-    }*/
+    }*//*
+
 
     @PostMapping(path = "/makeItemGroup", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,3 +44,4 @@ public class OrderController {
         response.sendError(HttpStatus.CONFLICT.value(), e.getMessage());
     }
 }
+*/

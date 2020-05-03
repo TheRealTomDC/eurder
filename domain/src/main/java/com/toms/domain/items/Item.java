@@ -1,10 +1,27 @@
 package com.toms.domain.items;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "items")
 public class Item {
-    private final String name;
+
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column
+    private String name;
+
+    @Column
     private String description;
+
+    @Column
     private double price;
+
     public static final String CURRENCY = "EURO";
+
+    @Column
     private int amountInStock;
 
 
@@ -13,8 +30,9 @@ public class Item {
         this.description = description;
         this.price = price;
         this.amountInStock = amountInStock;
+    }
 
-
+    public Item() {
     }
 
     public void setAmountInStock(int amountInStock) {
