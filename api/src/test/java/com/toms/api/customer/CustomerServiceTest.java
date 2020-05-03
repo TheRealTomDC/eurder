@@ -1,11 +1,15 @@
-package com.toms.service.customerservice;
+package com.toms.api.customer;
 
 import com.toms.domain.customer.Adress;
 import com.toms.domain.customer.Customer;
+import com.toms.service.customerservice.CustomerCreaterDTO;
+import com.toms.service.customerservice.CustomerService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+// todo: this class should be in Service (test)
 
 @SpringBootTest
 public class CustomerServiceTest {
